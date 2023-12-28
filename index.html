@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: #F0F0F0;
+            /* Světle šedá barva pozadí */
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            /* Omezení šířky obsahu */
+            background-color: #FFFFFF;
+            /* Bílé pozadí containeru */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Lehký stín */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            max-width: 200px;
+            /* Přizpůsobení velikosti loga */
+            margin-right: 20px;
+        }
+
+        header p {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        h1 {
+            color: #1F497D;
+            margin-bottom: 8px;
+            line-height: 1;
+            margin-top: 0px;
+        }
+
+        h2 {
+            color: #666666;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 16px;
+            margin-left: 20px;
+        }
+
+        a {
+            color: #0563C1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .nested-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .nested-table td {
+            border: none;
+            padding: 0;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #D9D9D9;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .table th {
+            background-color: #1F497D;
+            color: #FFFFFF;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #F2F2F2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .uCase {
+            text-transform: uppercase;
+        }
+
+        textarea,
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #D9D9D9;
+            border-radius: 4px;
+            /* Zaoblení rohů */
+        }
+
+        select {
+            background-color: #FFFFFF;
+            /* Bílé pozadí pro select */
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-container input {
+            width: auto;
+        }
+
+        .checkbox-label {
+            margin-left: 8px;
+            color: #333333;
+        }
+
+        footer {
+            font-size: 9px;
+            color: #f00;
+            text-align: center;
+        }
+
+        @page {
+            size: A4;
+            margin: 11mm 17mm 17mm 17mm;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                max-width: none;
+                width: 100%;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .table th {
+                background-color: #D9D9D9;
+                /* Světle šedivé pozadí pro tisk */
+                color: #000000;
+                /* Černé písmo pro tisk */
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #fff;
+            }
+
+            input,
+            textarea,
+            select {
+                border: none;
+                background: transparent;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+            }
+        }
+    </style>
+    <title>Word-like Document</title>
+</head>
+
+<body>
+
+    <table class="container">
+        <thead>
+            <tr>
+                <th>
+                    <header>
+                        <img src="mg-logo.jpg" alt="Logo">
+                        <div>
+                            <h1>Záznam z jednání s klientem</h1>
+                            <p>Informační list a záznam z jednání zprostředkovatele pro klienta ve
+                                smyslu ustanovení § 88 z. č.
+                                170/2018 Sb. a dle § 79 z. č.
+                                170/2018 Sb., § 2789 z. č. 89/2012 Sb.</p>
+                        </div>
+                    </header>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <th colspan="3" class="uCase">1. Pojištovací zprostředkovatel</th>
+                        </tr>
+                        <tr>
+                            <td width="20%">Obchodní jméno</td>
+                            <td>Pojišťovací servis M+M s.r.o.</td>
+                            <td><strong>IČ</strong> 25998447</td>
+                        </tr>
+                        <tr>
+                            <td>Sídlo</td>
+                            <td colspan="2">Akademika Heyrovského 1178/6, 500 03 Hradec Králové 3</td>
+                        </tr>
+                        <tr>
+                            <td>Kontaktní adresa</td>
+                            <td colspan="2">Akademika Heyrovského 1178/6, 500 03 Hradec Králové 3</td>
+                        </tr>
+                        <tr>
+                            <td>Zápis v registru ČNB</td>
+                            <td colspan="2">samostatný zprostředkovatel zprostředkovávající pojištění v pozici
+                                pojišťovacího
+                                agenta
+                                (zprostředkování pojištění pro pojišťovnu) dle § 12 odst. 1 písm. a) z. č. 170/2018 Sb.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jednající osoba</td>
+                            <td colspan="2">Ing. Marek Koutský, jednatel společnosti, tel. 608 421 443</td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th class="uCase">2. Pojistitel</th>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th><span class="uCase">3. Povinné informace pro klienta</span> podle zákona č. 170/2018 sb.
+                                o distribuci a zajištění a §2789 zákona č. 89/2012 sb.</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>Zápis pojišťovacího zprostředkovatele je možné ověřit v registru pojišťovacích
+                                        zprostředkovatelů vedeném ČNB, který je
+                                        dostupný na <a href="https://www.cnb.cz">www.cnb.cz</a> nebo na adrese ČNB, Na
+                                        Příkopě 28,
+                                        Praha 1</li>
+                                    <li>Pojišťovací zprostředkovatel je činný pro:
+                                        <ul>
+                                            <li>Generali Česká Pojišťovna a.s. se sídlem Bělehradská 132, 120 84 Praha
+                                                2, IČ 618 59
+                                                869</li>
+                                            <li>Allianz pojišťovna a.s., se sídlem Římská 103/12, 120 00 Praha 2, IČ 471
+                                                15 971</li>
+                                            <li>ČSOB pojišťovna a.s., člena holdingu ČSOB, se sídlem Masarykovo nám.
+                                                1458, 532 18
+                                                Pardubice, IČ 455 34 306</li>
+                                            <li>Česká podnikatelská pojišťovna, a.s., Vienna Insurance Group se sídlem
+                                                Pobřežní
+                                                665/23, 186 00 Praha 6, IČ 639 98 530</li>
+                                            <li>Kooperativa pojišťovna a.s., Vinna Insurance Group, se sídlem Pobřežní
+                                                665/21, 186
+                                                00 Praha 8, IČ 471 16 617</li>
+                                            <li>UNIQA pojišťovna a.s., se sídlem Bělohorská 19, 160 12 Praha 6, IČ 492
+                                                40 480</li>
+                                            <li>Slavia pojišťovna a.s., se Táborská 940/31, 140 00 Praha 4, IČ 601 97
+                                                501</li>
+                                        </ul>
+                                    </li>
+                                    <li> Pojišťovací zprostředkovatel nemá žádný podíl na kapitálu ani hlasovacích
+                                        právech
+                                        pojišťovny,
+                                        pro kterou sjednává pojištění.
+                                        Pojišťovny ani osoby pojišťovny nemají žádný podíl na kapitálu ani hlasovacích
+                                        právech
+                                        pojišťovacího zprostředkovatele</li>
+                                    <li>Pojišťovací zprostředkovatel je provizně odměňován pojišťovnami, pro které
+                                        sjednává
+                                        pojištění,
+                                        na základě smlouvy o
+                                        obchodním zastoupení provizemi a odměnami za péči o pojistný kmen.</li>
+                                    <li>Stížnosti na pojišťovacího makléře lze podat:
+                                        <ul>
+                                            <li>písemně na adrese ČNB ( uvedené v informaci )</li>
+                                            <li>kancelář ombudsmana ČKP</li>
+                                            <li>návrh ve věci sporu mezi zákazníkem a pojišťovacím zprostředkovatelem
+                                                při
+                                                zprostředkování
+                                                životního pojištění může
+                                                zákazník také podat k finančnímu arbitrovi podle zákona č. 229/2002 Sb.
+                                            </li>
+                                            <li>návrh ve věci sporu mezi zákazníkem a pojišťovacím zprostředkovatelem
+                                                při
+                                                zprostředkování
+                                                neživotního pojištění může
+                                                zákazník také podat České obchodní inspekci (www.coi.cz)</li>
+                                            <li>pojišťovací zprostředkovatel poskytuje pojištění, při kterém neposkytuje
+                                                analýzu
+                                                podle § 21,
+                                                odst. 7, zákona č. 38/2004 Sb.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">4. Klient</span> (zájemce o pojištění/ pojistník)</th>
+                        </tr>
+                        <tr>
+                            <td width="25%">Obchodní jméno/Jméno a příjmení:</td>
+                            <td width="45%"><input name="clientName"></td>
+                            <td width="5%">IČ/RČ:</td>
+                            <td width="20%"><input name="clientId"></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">Sídlo/Trvalé bydliště:</td>
+                            <td colspan="3"><input name="address"></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">Kontaktní adresa:</td>
+                            <td colspan="3"><input name="contactAddress"></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">Jednající osoba:</td>
+                            <td width="45%"><input name="responsiblePerson"></td>
+                            <td width="5%">TEL:</td>
+                            <td width="20%"><input name="tel"></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">E-mail:</td>
+                            <td colspan="3"><input name="email"></td>
+                    </table>
+
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">5. Pojistný zájem Klienta</span> - Klient si přeje
+                                sjednat pojistné
+                                krytí pro:</th>
+                        </tr>
+                        <tr>
+                            <td width="15%">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestSelf">
+                                    <label class="checkbox-label" for="checkbox">sebe / svou firmu</label>
+                                </div>
+                            </td>
+                            <td width="25%">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestPartner">
+                                    <label class="checkbox-label" for="checkbox">manžel/manželka nebo
+                                        partner/partnerka</label>
+                                </div>
+                            </td>
+                            <td width="10%">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestChildren">
+                                    <label class="checkbox-label" for="checkbox">své děti</label>
+                                </div>
+                            </td>
+                            <td width="40%">
+                                <div class="checkbox-container" style="width: 120px; float: left">
+                                    <input type="checkbox" name="interestOther">
+                                    <label class="checkbox-label" for="checkbox">někoho jiného</label>
+                                </div>
+                                <input style="width:210px; float: left" name="interestOtherDescription">
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">6. Potřeby klienta - RČ</span> <input
+                                    style="width: 20px; height: 20px;" type="checkbox" name="interestClientRC"></th>
+                        </tr>
+                        <tr>
+                            <td width="25%">Pojištění vozidel</td>
+                            <td width="25%">Pojištění majetku</td>
+                            <td width="25%">Pojištění odpovědnosti</td>
+                            <td width="25%">Cestovní pojištění</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestPOV">
+                                    <label class="checkbox-label" for="checkbox">povinné ručení</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestHAV">
+                                    <label class="checkbox-label" for="checkbox">havarijní pojištění</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestGlass">
+                                    <label class="checkbox-label" for="checkbox">pojištění skel</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestCarOther">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestHouse">
+                                    <label class="checkbox-label" for="checkbox">dům/byt</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestInterier">
+                                    <label class="checkbox-label" for="checkbox">domácnost</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestBuilding">
+                                    <label class="checkbox-label" for="checkbox">jiné stavby</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestPropertyOther">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestTravelCosts">
+                                    <label class="checkbox-label" for="checkbox">léčebné výlohy</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestTravelLiability">
+                                    <label class="checkbox-label" for="checkbox">odpovědnost</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestTravelOther">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestTravel">
+                                    <label class="checkbox-label" for="checkbox">občana</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityEmployee">
+                                    <label class="checkbox-label" for="checkbox">zaměstnance vůči zaměstnavateli</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityOther">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
+                    <p style="page-break-before: always; margin: 0;height:0">&nbsp;</p>
+                    <table class="table">
+                        <tr>
+                            <th style="border-right: 0px"><span class="uCase">7. Potřeby klienta - IČ</span> <input
+                                    style="width: 20px; height: 20px;" type="checkbox" name="interestClientIC"></th>
+                            <th style="border-left: 0px; border-right: 0px"></th>
+                            <th style="border-left: 0px; border-right: 0px"></th>
+                            <th style="border-left: 0px"></th>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <strong>I. Pojistná nebezpečí</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestFire">
+                                                <label class="checkbox-label" for="checkbox">požár, výbuch, úder blesku,
+                                                    náraz</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestSnow">
+                                                <label class="checkbox-label" for="checkbox">tíha sněhu, námrazy</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestWaterPipes">
+                                                <label class="checkbox-label" for="checkbox">vodovod</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestEarthquake">
+                                                <label class="checkbox-label" for="checkbox">zemětřesení</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestHailstorm">
+                                                <label class="checkbox-label" for="checkbox">vychřice, krupobití</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestFlood">
+                                                <label class="checkbox-label" for="checkbox">Povodeň, záplava</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestBurglary">
+                                                <label class="checkbox-label" for="checkbox">odcizení</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestSoilMove">
+                                                <label class="checkbox-label" for="checkbox">sesuv, pád</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestDangerOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <strong>II.a Pojištění budov a staveb:</strong>
+                            </td>
+                            <td colspan="2">
+                                <strong>II.b Pojištění přerušení provozu</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestCommercialBuilding">
+                                                <label class="checkbox-label" for="checkbox">určené k podnikání</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestNetworks">
+                                                <label class="checkbox-label" for="checkbox">inženýrské sítě</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestHousing">
+                                                <label class="checkbox-label" for="checkbox">bytové domy</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestBuildingOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="2">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestMissingProfit">
+                                                <label class="checkbox-label" for="checkbox">ušlý zisk, stále
+                                                    náklady</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestFinancialLosses">
+                                                <label class="checkbox-label" for="checkbox">jiné finanční
+                                                    ztráty</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestOtherLosses">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <strong>II.c Pojištění hmotných věcí movitých</strong>
+                            </td>
+                            <td> Místa pojištění</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" width="60%">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestThings">
+                                                <label class="checkbox-label" for="checkbox">hmotné věci movité</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestUsedThings">
+                                                <label class="checkbox-label" for="checkbox">věci převzaté /
+                                                    užívané</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestMachines">
+                                                <label class="checkbox-label" for="checkbox">stroje a strojní
+                                                    zařízení</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestFinances">
+                                                <label class="checkbox-label" for="checkbox">peníze, ceniny a
+                                                    pod.</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestStash">
+                                                <label class="checkbox-label" for="checkbox">zásoby</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestElectronics">
+                                                <label class="checkbox-label" for="checkbox">elektronika</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestSpecialValue">
+                                                <label class="checkbox-label" for="checkbox">véci zvláštní
+                                                    hodnoty</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestThingsOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestOnePlace">
+                                    <label class="checkbox-label" for="checkbox">jedno místo pojištění</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestCRPlace">
+                                    <label class="checkbox-label" for="checkbox">území ČR</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestMorePlaces">
+                                    <label class="checkbox-label" for="checkbox">více míst pojištění</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestOtherPlaces">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <strong>III. Pojistná nebezpečí</strong>
+                            </td>
+                            <td>
+                                Územní rozsah
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityBusiness">
+                                                <label class="checkbox-label" for="checkbox">z podnikání</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityCarrier">
+                                                <label class="checkbox-label" for="checkbox">dopravce</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilitySender">
+                                                <label class="checkbox-label" for="checkbox">zasílatele</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityEmployees">
+                                                <label class="checkbox-label" for="checkbox">zaměstnance</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityProfession">
+                                                <label class="checkbox-label" for="checkbox">profesní</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityBoard">
+                                                <label class="checkbox-label" for="checkbox">členů řídících orgánů
+                                                    spol.</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestLiabilityOtherIC">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityCR">
+                                    <label class="checkbox-label" for="checkbox">ČR</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityEU">
+                                    <label class="checkbox-label" for="checkbox">Evropa</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityWorld">
+                                    <label class="checkbox-label" for="checkbox">Celý svět</label>
+                                </div>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestLiabilityOtherPlace">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <strong>IV. Pojištění věcí při přepravě</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestTransportCarrier">
+                                                <label class="checkbox-label" for="checkbox">přeprava smluvním
+                                                    dopravcem</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestTransportSpecial">
+                                                <label class="checkbox-label" for="checkbox">přeprava v jiném
+                                                    řežimu</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestTransportOwn">
+                                                <label class="checkbox-label" for="checkbox">přeprava vlastní</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestTransportOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <strong>V.Pojištění finančních rizik</strong>
+                            </td>
+                            <td colspan="2">
+                                <strong>V.Pojištění vozidel / flotilové pojištění</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestTransportFinResponsibility">
+                                                <label class="checkbox-label" for="checkbox">finanční způsobilost
+                                                    dopravce</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestClaims">
+                                                <label class="checkbox-label" for="checkbox">pohledávky</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestBancrupcy">
+                                                <label class="checkbox-label" for="checkbox">pojištění proti
+                                                    úpadku</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestFinancialOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td colspan="2">
+                                <table class="nested-table">
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestICPOV">
+                                                <label class="checkbox-label" for="checkbox">povinné ručení</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestAdditionals">
+                                                <label class="checkbox-label" for="checkbox">doplňkové pojištění</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestICHAV">
+                                                <label class="checkbox-label" for="checkbox">havarijní pojištění</label>
+                                            </div>
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" name="interestICOther">
+                                                <label class="checkbox-label" for="checkbox">jiné (viz
+                                                    specifikace)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <strong>VII. Ostatní pojištění</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="interestICSpecOther">
+                                    <label class="checkbox-label" for="checkbox">jiné (viz specifikace)</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
+                    <p style="page-break-before: always; margin: 0;height:0">&nbsp;</p>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4" class="uCase">8. Bližší specifikace požadavků a potřeb klienta</th>
+                        </tr>
+                        <tr>
+                            <td><textarea name="clientNeeds"></textarea></td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4" class="uCase">9. Doporučení a odůvodnění</th>
+                        </tr>
+                        <tr>
+                            <td><textarea name="reccomendations"></textarea></td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">10. Informace o klientovi</span><br>(zejména zkušenosti,
+                                finanční
+                                situace, oblast podnikání, místo a zařízení nemovitosti a domácnosti klienta apod.)</th>
+                        </tr>
+                        <tr>
+                            <td><textarea name="clientInfo"></textarea></td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">11. Vyhodnocení situace, postupovaných rizik</span></th>
+                        </tr>
+                        <tr>
+                            <td><textarea name="risks"></textarea></td>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">12. Případné nesrovlanosti mezi požadavky klienta a
+                                    nabízeným
+                                    pojištěním</span></th>
+                        </tr>
+                        <tr>
+                            <td><textarea name="differences"></textarea></td>
+                        </tr>
+                    </table>
+                    <p> Klient svým podpisem potvrzuje, že jeho požadavky a potřeby související se sjednávaným
+                        pojištěním jsou
+                        zaznamenány jasně,
+                        přesně, úplně a srozumitelně a informace mu byly také poskytnuty srozumitelně a to před
+                        uzavřením pojistné
+                        smlouvy. Záznam
+                        těchto požadavků potřeb a informací odráží všechny podstatné skutečnosti.</p>
+                    <p>Klient bere na vědomí, že tento dokument, spolu s uzavřenou pojistnou smlouvou , slouží
+                        pojišťovnám pro
+                        vyhodnocení požadavků
+                        klienta ve smyslu § 2789 č. 89/2012 Sb.</p>
+                    <p>Klient svým podpisem potvrzuje, že převzal originál tohoto dokumentu, druhé vyhotovení dokumentu
+                        obdrží
+                        pojišťovací
+                        zprostředkovatel, třetí vyhotovení pojišťovna.</p>
+
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
