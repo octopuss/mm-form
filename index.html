@@ -108,7 +108,7 @@
         }
 
         .nested-table td {
-            border: none;
+            border: none !important;
             padding: 0;
         }
 
@@ -1100,18 +1100,19 @@
                         zprostředkovatel, třetí vyhotovení pojišťovna.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
-                            <td>
+                            <td style="vertical-align: top; width: 365px">
                                 V <input name="signaturePlace" style="max-width:220px"> dne <input name="signatureDate"
                                     style="width: 90px">
                             </td>
 
-                            <td>
+                            <td style="padding-top:50px; text-align: center;">
                                 .................................
-                                podpis zprostředkovatele
+                                <br> <span style="font-size: 12px">podpis zprostředkovatele</span>
                             </td>
-                            <td>
+                            <td style="padding-top:50px; text-align: center;">
                                 .................................
-                                podpis klienta
+                                <br><span style="font-size: 12px">podpis
+                                    klienta</span>
                             </td>
                         </tr>
                     </table>
