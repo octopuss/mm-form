@@ -238,43 +238,57 @@
                 "name": "Generali Česká Pojišťovna a.s.",
                 "address": "Bělehradská 132, 120 84 Praha 2",
                 "contactAddress": "Bělehradská 132, 120 84 Praha 2",
-                "id": "61859869"
+                "id": "61859869",
+                "cnb": "",
+                "contact": "",
             },
             "Allianz": {
                 "name": "Allianz pojišťovna a.s.",
                 "address": "Římská 103/12, 120 00 Praha 2",
                 "contactAddress": "Římská 103/12, 120 00 Praha 2",
-                "id": "47115971"
+                "id": "47115971",
+                "cnb": "",
+                "contact": "",
             },
             "ČSOB": {
                 "name": "ČSOB pojišťovna a.s.",
                 "address": "Masarykovo nám. 1458, 532 18 Pardubice",
                 "contactAddress": "Masarykovo nám. 1458, 532 18 Pardubice",
-                "id": "45534306"
+                "id": "45534306",
+                "cnb": "",
+                "contact": "",
             },
             "ČPP": {
                 "name": "Česká podnikatelská pojišťovna, a.s., Vienna Insurance Group",
                 "address": "Pobřežní 665/23, 186 00 Praha 6",
                 "contactAddress": "Pobřežní 665/23, 186 00 Praha 6",
-                "id": "63998530"
+                "id": "63998530",
+                "cnb": "",
+                "contact": "",
             },
             "Kooperativa": {
                 "name": "Kooperativa pojišťovna a.s., Vinna Insurance Group",
                 "address": "Pobřežní 665/21, 186 00 Praha 8",
                 "contactAddress": "Pobřežní 665/21, 186 00 Praha 8",
-                "id": "47116617"
+                "id": "47116617",
+                "cnb": "",
+                "contact": "",
             },
             "UNIQA": {
                 "name": "UNIQA pojišťovna a.s.",
                 "address": "Bělohorská 19, 160 12 Praha 6",
                 "contactAddress": "Bělohorská 19, 160 12 Praha 6",
-                "id": "49240480"
+                "id": "49240480",
+                "cnb": "",
+                "contact": "",
             },
             "Slavia": {
                 "name": "Slavia pojišťovna a.s.",
                 "address": "Táborská 940/31, 140 00 Praha 4",
                 "contactAddress": "Táborská 940/31, 140 00 Praha 4",
-                "id": "60197501"
+                "id": "60197501",
+                "cnb": "",
+                "contact": "",
             }
         }
         function fillCompanyData() {
@@ -282,7 +296,8 @@
             var companyData = companies[company];
             document.getElementById("insurerAddress").innerHTML = companyData.address;
             document.getElementById("insurerContactAddress").innerHTML = companyData.contactAddress;
-            document.getElementById("insurerCompanyId").innerHTML = companyData.id;
+            document.getElementById("insurerCNB").innerHTML = companyData.cnb;
+            document.getElementById("insurerContact").innerHTML = companyData.contact;
         }
         function fillForm(jsonData) {
 
