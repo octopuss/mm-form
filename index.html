@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -30,6 +31,26 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            /* Zelená barva pro tlačítka */
+            color: #FFFFFF;
+            padding: 10px 8px 10px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button i {
+            margin-right: 6px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            /* Tmavší zelená barva při najetí myší */
         }
 
         header img {
@@ -153,6 +174,12 @@
             text-align: center;
         }
 
+        .headingActions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         @page {
             size: A4;
             margin: 11mm 17mm 17mm 17mm;
@@ -198,9 +225,108 @@
                 width: 210mm;
                 height: 297mm;
             }
+
+            button {
+                display: none;
+            }
         }
     </style>
-    <title>Word-like Document</title>
+    <title>Záznam potřeb klienta</title>
+    <script>
+        function fillForm(jsonData) {
+
+            // Prochází klíče a hodnoty JSON objektu
+            for (var key in jsonData) {
+                if (jsonData.hasOwnProperty(key)) {
+                    // Nalezneme odpovídající prvek formuláře podle jména
+                    var formElement = document.querySelector('[name="' + key + '"]');
+
+                    // Pokud prvek existuje, nastavíme hodnotu
+                    if (formElement) {
+                        if (formElement.type === 'checkbox') {
+                            formElement.checked = jsonData[key];
+                        } else {
+                            formElement.value = jsonData[key];
+                        }
+                    }
+                }
+            }
+        }
+        function generateJSON() {
+            // Vybere všechny input, checkbox a textarea prvky formuláře
+            var formElements = document.querySelectorAll('input, checkbox, textarea');
+
+            // Inicializuje objekt pro ukládání dat
+            var formData = {};
+
+            // Pro každý prvek provede iteraci
+            formElements.forEach(function (element) {
+                // Přidá hodnotu do objektu s klíčem podle atributu name
+                formData[element.name] = element.type === 'checkbox' ? element.checked : element.value;
+            });
+
+            // Vypíše JSON do konzole (můžete také vypsat na stránku nebo jinam)
+            console.log(JSON.stringify(formData, null, 2));
+            return formData;
+        }
+        function downloadObjectAsJson(exportObj, exportName) {
+            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+            var downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", exportName + ".json");
+            document.body.appendChild(downloadAnchorNode); // required for firefox
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+        function downloadRecord() {
+            var jsonData = generateJSON();
+            const fileName = prompt("Název souboru", "zaznam");
+            if (fileName != null) {
+                downloadObjectAsJson(jsonData, fileName);
+            }
+        }
+
+        function openFile() {
+            var fileInput = document.createElement('input');
+            fileInput.type = 'file';
+
+            // Přidáme event listener pro událost změny (výběr souboru)
+            fileInput.addEventListener('change', function () {
+                loadFile(fileInput);
+            });
+
+            // Simulujeme kliknutí na input element
+            fileInput.click();
+        }
+
+        function loadFile(input) {
+            var file, fr;
+
+            if (typeof window.FileReader !== 'function') {
+                alert("The file API isn't supported on this browser yet.");
+                return;
+            }
+
+            else if (!input.files) {
+                alert("This browser doesn't seem to support the `files` property of file inputs.");
+            }
+            else if (!input.files[0]) {
+                alert("Please select a file before clicking 'Load'");
+            }
+            else {
+                file = input.files[0];
+                fr = new FileReader();
+                fr.onload = receivedText;
+                fr.readAsText(file);
+            }
+
+            function receivedText(e) {
+                let lines = e.target.result;
+                var newArr = JSON.parse(lines);
+                fillForm(newArr);
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -212,7 +338,14 @@
                     <header>
                         <img src="mg-logo.jpg" alt="Logo">
                         <div>
-                            <h1>Záznam z jednání s klientem</h1>
+                            <div class="headingActions">
+                                <h1>Záznam z jednání s klientem</h1>
+                                <div><button id='btnLoad' onclick="openFile()" style="background-color: #628abc;"><i
+                                            class="fas fa-file-import"></i></button>
+                                    <button type="button" onclick="downloadRecord()"><i
+                                            class="fas fa-save"></i></button>
+                                </div>
+                            </div>
                             <p>Informační list a záznam z jednání zprostředkovatele pro klienta ve
                                 smyslu ustanovení § 88 z. č.
                                 170/2018 Sb. a dle § 79 z. č.
@@ -917,22 +1050,71 @@
                             <td><textarea name="differences"></textarea></td>
                         </tr>
                     </table>
-                    <p> Klient svým podpisem potvrzuje, že jeho požadavky a potřeby související se sjednávaným
+
+                    <p>
+                    <div class="checkbox-container">
+                        <input type="checkbox" name="notDisclosedAllInfo">
+                        <label class="checkbox-label" for="checkbox">Klient odmítl sdělit některý z údajů
+                            uvedených v bodech 4.-12.</label>
+                    </div>
+                    <span style="font-size: 12px;padding-left:30px">Klient byl upozorněn, že chybějící informace mohou
+                        ovlivnit doporučení
+                        daného produktu</span>
+                    </p>
+                    <table class="nested-table">
+                        <tr>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="recordForNewInsurance">
+                                    <label class="checkbox-label" for="checkbox">Záznam se týká nové smlouvy</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="recordForCurrentInsurance">
+                                    <label class="checkbox-label" for="checkbox">Záznam se týká stávající
+                                        smlouvy</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p style="font-size:12px"> Klient svým podpisem potvrzuje, že jeho požadavky a potřeby související
+                        se sjednávaným
                         pojištěním jsou
                         zaznamenány jasně,
                         přesně, úplně a srozumitelně a informace mu byly také poskytnuty srozumitelně a to před
                         uzavřením pojistné
                         smlouvy. Záznam
-                        těchto požadavků potřeb a informací odráží všechny podstatné skutečnosti.</p>
-                    <p>Klient bere na vědomí, že tento dokument, spolu s uzavřenou pojistnou smlouvou , slouží
+                        těchto požadavků potřeb a informací odráží všechny podstatné skutečnosti.
+                        Klient bere na vědomí, že tento dokument, spolu s uzavřenou pojistnou
+                        smlouvou , slouží
                         pojišťovnám pro
                         vyhodnocení požadavků
-                        klienta ve smyslu § 2789 č. 89/2012 Sb.</p>
-                    <p>Klient svým podpisem potvrzuje, že převzal originál tohoto dokumentu, druhé vyhotovení dokumentu
+                        klienta ve smyslu § 2789 č. 89/2012 Sb.
+                        Klient svým podpisem potvrzuje, že převzal originál tohoto dokumentu,
+                        druhé
+                        vyhotovení dokumentu
                         obdrží
                         pojišťovací
                         zprostředkovatel, třetí vyhotovení pojišťovna.</p>
+                    <table class="nested-table" style="margin-top:100px">
+                        <tr>
+                            <td>
+                                V <input name="signaturePlace" style="max-width:220px"> dne <input name="signatureDate"
+                                    style="width: 90px">
+                            </td>
 
+                            <td>
+                                .................................
+                                podpis zprostředkovatele
+                            </td>
+                            <td>
+                                .................................
+                                podpis klienta
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
         </tbody>
