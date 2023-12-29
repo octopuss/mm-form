@@ -54,7 +54,7 @@
         }
 
         header img {
-            max-width: 200px;
+            max-width: 100px;
             /* Přizpůsobení velikosti loga */
             margin-right: 20px;
         }
@@ -1151,7 +1151,8 @@
                             <td><textarea name="differences"></textarea></td>
                         </tr>
                     </table>
-
+                    <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
+                    <p style="page-break-before: always; margin: 0;height:0">&nbsp;</p>
                     <p>
                     <div class="checkbox-container">
                         <input type="checkbox" name="notDisclosedAllInfo">
@@ -1175,6 +1176,16 @@
                                     <input type="checkbox" name="recordForCurrentInsurance">
                                     <label class="checkbox-label" for="checkbox">Záznam se týká stávající
                                         smlouvy</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="checkbox-container">
+                                    <input type="checkbox" name="modelMatchExpectations">
+                                    <label class="checkbox-label" for="checkbox">Osoba jednající s klientem prohlaŠuje,
+                                        že sjednaná pojistná smlouva nebo modelace
+                                        zjištěnlim potřebám a požadavkům klienta.</label>
                                 </div>
                             </td>
                         </tr>
@@ -1209,6 +1220,208 @@
                             <td style="padding-top:50px; text-align: center;">
                                 .................................
                                 <br> <span style="font-size: 12px">podpis zprostředkovatele</span>
+                            </td>
+                            <td style="padding-top:50px; text-align: center;">
+                                .................................
+                                <br><span style="font-size: 12px">podpis
+                                    klienta</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
+    <p style="page-break-before: always; margin: 0;height:0">&nbsp;</p>
+    <table class="container">
+        <thead>
+            <tr>
+                <th>
+                    <header>
+                        <img src="mm_logo.jpg" alt="Logo">
+                        <div>
+                            <div class="headingActions">
+                                <h1>Informace a souhlas se zpracováním údajů</h1>
+                            </div>
+                        </div>
+                    </header>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">Klient</span></th>
+                        </tr>
+                        <tr>
+                            <td width="220px">Obchodní jméno/Jméno a příjmení:</td>
+                            <td id="clientName">Generali česká pojištovna budwiser budvar</td>
+                            <td width="80px">IČ/RČ:</td>
+                            <td id="clientId" width="90px"></td>
+                        </tr>
+                        <tr>
+                            <td>Sídlo/Trvalé bydliště:</td>
+                            <td id="address" colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td>Číslo průkazu totožnosti: </td>
+                            <td><input name="idDocument"></td>
+                            <td>Datum nar.: </td>
+                            <td><input name="birthDate"></td>
+                        <tr>
+                            <td>Jednající osoba:</td>
+                            <td id="responsiblePerson"></td>
+                            <td>Tel:</td>
+                            <td id="tel"></td>
+                        </tr>
+                        <tr>
+                            <td>E-mail:</td>
+                            <td colspan="3" id="email"></td>
+                    </table>
+                    <p style="font-size:14px">
+                        Svým podpisem níže, učiněným v písemné nebo elektronické podobě, výslovně potvrzuji, že jsem se
+                        v plném rozsahu seznámil s níže uvedenými informacemi a dále,
+                        že jsem učinil(a) a udělil(a) osobně (nikoli v zastoupení jinou osobou) níže uvedená prohlášení
+                        a souhlasy a současně potvrzuji, že veškeré výše uvedené identifikační
+                        údaje mé osoby, příp. mých nezletilých dětí jsou přesnými a pravými údaji identifikujícími moji
+                        osobu či moje nezletilé děti.
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th colspan="4"><span class="uCase">Nezletileté děti (vyplňte v případě, že udělujete
+                                    souhlas se zpracováním osobních údajů i u nezletiletých dětí)</span></th>
+                        </tr>
+                        <tr>
+                            <td>Jméno a příjmení:</td>
+                            <td><input name="child1Name"></td>
+                            <td>RČ:</td>
+                            <td><input name="child1Id"></td>
+                        </tr>
+                        <tr>
+                            <td>Jméno a příjmení:</td>
+                            <td><input name="child2Name"></td>
+                            <td>RČ:</td>
+                            <td><input name="child2Id"></td>
+                        </tr>
+                        <tr>
+                            <td>Jméno a příjmení:</td>
+                            <td><input name="child3Name"></td>
+                            <td>RČ:</td>
+                            <td><input name="child3Id"></td>
+                        </tr>
+                        <tr>
+                            <td>Jméno a příjmení:</td>
+                            <td><input name="child4Name"></td>
+                            <td>RČ:</td>
+                            <td><input name="child4Id"></td>
+                        </tr>
+                    </table>
+                    <p style="font-size:14px"><strong>Informace dle Nařízení Evropského parlamentu a Rady (EU) 2016/679
+                            o ochraně fyzických
+                            osob v souvislosti se
+                            zpracováním osobních údajů (obecné nařízení o ochraně osobních údajů):</strong></p>
+                    <ol style="font-size:14px">
+                        <li><strong>totožnost a kontaktní údaje správce:</strong><br> Pojišťovací servis M+M, s.r.o., se
+                            sídlem Hradec
+                            Králové, Ak. Heyrovského 1178/6,
+                            PSČ 50003, IČO: 25998447, zapsaná v OR u Krajského soudu v Hradci Králové, oddíl C, vložka
+                            19071</li>
+                        <li><strong>účely zpracování osobních údajů:</strong>
+                            <ol type="a">
+                                <li>poskytování služeb spočívajících ve zprostředkování uzavírání smluv, zejména
+                                    zprostředkování pojištění, poskytování
+                                    investičních služeb, zprostředkování spotřebitelských úvěrů;</li>
+                                <li>ukládání a uchovávání osobních údajů v databázi klientů (zákazníků) správce a
+                                    současné
+                                    předávání a sdílení
+                                    osobních údajů s příjemci uvedenými pod bodem 4. níže;</li>
+                                <li>vnitřní potřeby, zejména ochrana práv a právem chráněných zájmů správce, sledování
+                                    kvality služeb a spokojenosti
+                                    klientů a optimalizace poskytovaných služeb a produktů;</li>
+                                <li>obchodní a (tele)marketingové, zejména nabízení služeb včetně zasílání obchodních
+                                    sdělení, informování o produktech a
+                                    službách, a to včetně cílených nabídek produktů a služeb založených na
+                                    automatizovaném
+                                    zpracování osobních údajů,
+                                    vč. profilování.</li>
+                            </ol>
+                        </li>
+                        <li><strong>právní základy zpracování:</strong><br>
+                            souhlas subjektu údajů, plnění zákonných (právních) povinností správce (zejm. dle bodu 2. b.
+                            výše)</li>
+                        <li><strong>kategorie příjemců osobních údajů</strong>:<br>
+                            osoby fyzické či právnické tvořící se správcem koncern a třetí osoby spolupracující se
+                            správcem; smluvní partneři správce, tj.
+                            zejména vázaní zástupci správce; obchodní partneři správce, tj. osoby, které zastupuje
+                            správce při uzavírání smluv se
+                            subjektem údajů, zejména banky, pojišťovny, investiční společnosti a fondy, penzijní
+                            společnosti, poskytovatelé
+                            spotřebitelských úvěrů, zdravotní pojišťovny, družstevní záložny; orgány veřejné moci při
+                            plnění zákonných povinností
+                            správce, např. Česká národní banka, Ministerstvo financí České republiky, Finanční
+                            analytický úřad</li>
+                        <li><strong>osobní údaje nebudou předávány do států mimo EU, ani mezinárodní
+                                organizaci.</strong></li>
+                        <li><strong>doba, po kterou budou osobní údaje uloženy (zpracovávány):</strong><br>po dobu
+                            využívání služeb správce, vždy však do odvolání souhlasu se zpracováním, v
+                            případě
+                            údajů potřebných pro plnění
+                            zákonných povinností správce po dobu stanovenou příslušnými právními předpisy</p>
+                        </li>
+                        <li><strong>upozorňujeme Vás na Vaše právo:</strong>
+                            <ol type="a">
+                                <li>požadovat po správci kdykoli přístup k Vašim osobním údajům;
+                                <li>požadovat po správci kdykoli opravu Vašich osobních údajů nebo jejich výmaz, popř.
+                                    omezení jejich zpracování;</li>
+                                <li>dále máte právo vznést námitku proti zpracování Vašich osobních údajů;
+                                <li>na přenositelnost osobních údajů (resp. požádat o přenos Vašich osobních údajů přímo
+                                    jinému správci);</li>
+                                <li>kdykoli odvolat Váš souhlas se zpracováním Vašich osobních údajů, aniž je tím ovšem
+                                    dotčena zákonnost zpracování
+                                    založená na souhlasu uděleném před jeho odvoláním;</li>
+                                <li>podat stížnost u dozorového úřadu, kterým je Úřad pro ochranu osobních údajů, sídlo:
+                                    Pplk. Sochora 27, 170 00 Praha
+                                    7, www.uoou.cz;</li>
+                            </ol>
+                        </li>
+                        <li><strong>dále Vás upozorňujeme na skutečnost, že poskytnutí Vašich osobních údajů je
+                                (smluvním)
+                                předpokladem toho,
+                                abychom Vám mohli poskytnout poradenské či další služby v plném rozsahu, tzn., že bez
+                                poskytnutí osobních
+                                údajů může dojít k omezení rozsahu služeb poskytovaných Vaší osobě.</strong></li>
+                    </ol>
+                    <p style="font-size:14px">
+                        <strong>Souhlas se zpracováním osobních údajů a s šířením obchodních sdělení</strong><br>
+                        Prohlašuji, že jsem si v plném rozsahu prostudoval(a) informace poskytnuté mi v tomto dokumentu
+                        výše, a že jsem těmto informacím,
+                        včetně svých práv v souvislosti se zpracováním mých osobních údajů plně porozuměl(a), přičemž na
+                        tomto základě tímto uděluji
+                        Pojišťovací servis M+M, s.r.o., se sídlem Hradec Králové, Ak. Heyrovského 1178/6, PSČ 50003,
+                        IČO: 25998447 svůj svobodný,
+                        informovaný a výslovný souhlas s tím, aby veškeré mnou poskytnuté osobní údaje, vč. osobních
+                        údajů mého nezletilého dítěte, tj.
+                        zejména jméno, příjmení, datum narození, RČ, adresa bydliště, telefonní číslo – mobilní/pevná
+                        linka, e-mailová adresa či jiný tzv.
+                        elektronický kontakt, včetně tzv. zvláštní kategorie osobních údajů, tj. údajů o mém zdravotním
+                        stavu, byly jím zpracovávány k účelům
+                        uvedeným výše pod bodem 2.<br>
+                        <strong>Tento svůj souhlas uděluji správci na dobu neurčitou, tj. až do jeho odvolání.</strong>
+                    </p>
+                    <table class="nested-table" style="margin-top:100px">
+                        <tr>
+                            <td style="vertical-align: top; width: 500px">
+                                V <input name="signaturePlace1" style="max-width:220px"> dne <input
+                                    name="signatureDate1" style="width: 90px">
                             </td>
                             <td style="padding-top:50px; text-align: center;">
                                 .................................
