@@ -239,56 +239,56 @@
                 "address": "Bělehradská 132, 120 84 Praha 2",
                 "contactAddress": "Bělehradská 132, 120 84 Praha 2",
                 "id": "61859869",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 1464",
+                "contact": "email: info@generaliceska.cz www.generaliceska.cz tel: +420 241 114 114",
             },
             "Allianz": {
                 "name": "Allianz pojišťovna a.s.",
                 "address": "Římská 103/12, 120 00 Praha 2",
                 "contactAddress": "Římská 103/12, 120 00 Praha 2",
                 "id": "47115971",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 1815",
+                "contact": "email: info@allianz.cz www.allianz.cz tel: +420 241 170 000",
             },
             "ČSOB": {
                 "name": "ČSOB pojišťovna a.s.",
                 "address": "Masarykovo nám. 1458, 532 18 Pardubice",
                 "contactAddress": "Masarykovo nám. 1458, 532 18 Pardubice",
                 "id": "45534306",
-                "cnb": "",
-                "contact": "",
+                "or": "u Krajského soudu v Hradci Králové, sp. zn. B 567",
+                "contact": "email: info@csobpoj.cz www.csobpoj.cz tel: +420 466 100 777",
             },
             "ČPP": {
                 "name": "Česká podnikatelská pojišťovna, a.s., Vienna Insurance Group",
                 "address": "Pobřežní 665/23, 186 00 Praha 6",
                 "contactAddress": "Pobřežní 665/23, 186 00 Praha 6",
                 "id": "63998530",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 3433",
+                "contact": "email: info@cpp.cz www.cpp.cz tel: +420 957 444 555",
             },
             "Kooperativa": {
                 "name": "Kooperativa pojišťovna a.s., Vinna Insurance Group",
                 "address": "Pobřežní 665/21, 186 00 Praha 8",
                 "contactAddress": "Pobřežní 665/21, 186 00 Praha 8",
                 "id": "47116617",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 1897",
+                "contact": "email: info@koop.cz www.koop.cz tel.: +420 957 105 105",
             },
             "UNIQA": {
                 "name": "UNIQA pojišťovna a.s.",
                 "address": "Bělohorská 19, 160 12 Praha 6",
                 "contactAddress": "Bělohorská 19, 160 12 Praha 6",
                 "id": "49240480",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 2012",
+                "contact": "email: info@uniqa.cz www.uniqa.cz tel: +420 488 125 125",
             },
             "Slavia": {
                 "name": "Slavia pojišťovna a.s.",
                 "address": "Táborská 940/31, 140 00 Praha 4",
                 "contactAddress": "Táborská 940/31, 140 00 Praha 4",
                 "id": "60197501",
-                "cnb": "",
-                "contact": "",
+                "or": "u Městského soudu v Praze, sp. zn. B 2591",
+                "contact": "email: info@slavia-pojistovna.cz www.slavia-pojistovna.cz tel: +420 255 790 111",
             }
         }
         function fillCompanyData() {
@@ -296,7 +296,7 @@
             var companyData = companies[company];
             document.getElementById("insurerAddress").innerHTML = companyData.address;
             document.getElementById("insurerContactAddress").innerHTML = companyData.contactAddress;
-            document.getElementById("insurerCNB").innerHTML = companyData.cnb;
+            document.getElementById("insurerCNB").innerHTML = companyData.or;
             document.getElementById("insurerContact").innerHTML = companyData.contact;
         }
         function fillForm(jsonData) {
@@ -502,66 +502,42 @@
                         <tr>
                             <td>
                                 <ul>
-                                    <li>Zápis pojišťovacího zprostředkovatele je možné ověřit v registru pojišťovacích
-                                        zprostředkovatelů vedeném ČNB, který je
-                                        dostupný na <a href="https://www.cnb.cz">www.cnb.cz</a> nebo na adrese ČNB, Na
-                                        Příkopě 28,
-                                        Praha 1</li>
+                                    <li>Zápis pojišťovacího zprostředkovatele a jeho spolupracujících subjektů (dále „PZ“) v registru
+pojišťovacích zprostředkovatelů lze ověřit na internetových stránkách České národní banky <a href="https://www.cnb.cz">www.cnb.cz</a> nebo přímo na adrese České národní banky.</li>
                                     <li>Pojišťovací zprostředkovatel je činný pro:
                                         <ul>
-                                            <li>Generali Česká Pojišťovna a.s. se sídlem Bělehradská 132, 120 84 Praha
-                                                2, IČ 618 59
-                                                869</li>
-                                            <li>Allianz pojišťovna a.s., se sídlem Římská 103/12, 120 00 Praha 2, IČ 471
-                                                15 971</li>
-                                            <li>ČSOB pojišťovna a.s., člena holdingu ČSOB, se sídlem Masarykovo nám.
-                                                1458, 532 18
-                                                Pardubice, IČ 455 34 306</li>
-                                            <li>Česká podnikatelská pojišťovna, a.s., Vienna Insurance Group se sídlem
-                                                Pobřežní
-                                                665/23, 186 00 Praha 6, IČ 639 98 530</li>
-                                            <li>Kooperativa pojišťovna a.s., Vinna Insurance Group, se sídlem Pobřežní
-                                                665/21, 186
-                                                00 Praha 8, IČ 471 16 617</li>
-                                            <li>UNIQA pojišťovna a.s., se sídlem Bělohorská 19, 160 12 Praha 6, IČ 492
-                                                40 480</li>
-                                            <li>Slavia pojišťovna a.s., se Táborská 940/31, 140 00 Praha 4, IČ 601 97
-                                                501</li>
+                                            <li>Allianz pojišťovna a.s.</li>
+                                            <li>Česká podnikatelská pojišťovna, a.s.</li>
+                                            <li>ČSOB pojišťovna a.s.</li>
+                                            <li>Generali Česká Pojišťovna a.s.</li>
+                                            <li>Kooperativa pojišťovna a.s.</li>
+                                            <li>Slavia pojišťovna a.s.</li>
+                                            <li>UNIQA pojišťovna a.s.</li>
                                         </ul>
                                     </li>
-                                    <li> Pojišťovací zprostředkovatel nemá žádný podíl na kapitálu ani hlasovacích
-                                        právech
-                                        pojišťovny,
-                                        pro kterou sjednává pojištění.
-                                        Pojišťovny ani osoby pojišťovny nemají žádný podíl na kapitálu ani hlasovacích
-                                        právech
-                                        pojišťovacího zprostředkovatele</li>
-                                    <li>Pojišťovací zprostředkovatel je provizně odměňován pojišťovnami, pro které
-                                        sjednává
-                                        pojištění,
-                                        na základě smlouvy o
-                                        obchodním zastoupení provizemi a odměnami za péči o pojistný kmen.</li>
-                                    <li>Stížnosti na pojišťovacího makléře lze podat:
-                                        <ul>
-                                            <li>písemně na adrese ČNB ( uvedené v informaci )</li>
-                                            <li>kancelář ombudsmana ČKP</li>
-                                            <li>návrh ve věci sporu mezi zákazníkem a pojišťovacím zprostředkovatelem
-                                                při
-                                                zprostředkování
-                                                životního pojištění může
-                                                zákazník také podat k finančnímu arbitrovi podle zákona č. 229/2002 Sb.
-                                            </li>
-                                            <li>návrh ve věci sporu mezi zákazníkem a pojišťovacím zprostředkovatelem
-                                                při
-                                                zprostředkování
-                                                neživotního pojištění může
-                                                zákazník také podat České obchodní inspekci (www.coi.cz)</li>
-                                            <li>pojišťovací zprostředkovatel poskytuje pojištění, při kterém neposkytuje
-                                                analýzu
-                                                podle § 21,
-                                                odst. 7, zákona č. 38/2004 Sb.</li>
-                                        </ul>
-                                    </li>
+                                    <li> PZ je provizně odměňován výhradně od pojistitelů.</li>
+                                    <li>PZ a osoba uzavírající pojistnou smlouvu nemá žádný přímý nebo nepřímý podíl na
+hlasovacích právech a kapitálu pojistitele, pro kterou sjednávají pojištění. Pojistitelé,
+respektive osoby, které je ovládají, nemají přímý ani nepřímý podíl na hlasovacích právech a
+kapitálu uvedeného PZ.</li>
+                                    <li>Stížnost na PZ, stejně jako stížnost týkající se sjednaného pojištění je možné podat písemně,
+telefonicky nebo emailem na kontaktní údaje pojistitele, uvedené na jeho internetových
+stránkách, na adresu PZ nebo též na adresu České národní banky, Na Příkopě 28, 115 03
+Praha 1 nebo na <a href="https://www.cnb.cz">www.cnb.cz</a> jakožto dohledový orgán. Tím není dotčeno právo obrátit se nv
+uvedených věcech na soud. V případě stížnosti na PZ či pojistitele je možné v případě
+neživotního pojištění podat návrh na řešení sporu České obchodní inspekci (<a href="https://www.coi.cz">www.coi.cz</a>),
+v případě životního pojištění návrh finančnímu arbitrovi (<a href="https://www.finarbitr.cz">www.finarbitr.cz</a>).</li>
+                                    <li>Navrhovaná pojistná smlouva se řídí právním řádem ČR.</li>
+                                    <li>Byla-li pojistná smlouva uzavřena formou obchodu na dálku, má pojistník právo odstoupit od
+pojistné smlouvy ve lhůtě 14 dnů ode dne jejího uzavření vyjma pojistných smluv životního
+pojištění. Podmínky pro odstoupení od pojistné smlouvy životního pojištění jsou uvedeny
+v informacích pro zájemce o pojištění. Pojistník nemůže odstoupit od smlouvy cestovního
+pojištění uzavřené na dobu kratší než 1 měsíc. Podmínky pro odstoupení od pojistné smlouvy
+a formulář pro odstoupení jsou k dispozici na webových stránkách pojistitele.</li>
+                                    <li>PZ provádí svou činnost způsobem, při kterém poskytuje analýzu konkurenčních produktů
+v případech, kdy mu tak ukládá zákon.</li>
+                                    <li>Záznam z jednání není závazný a nepředstavuje návrh na uzavření pojistné smlouvy ani
+pojistnou smlouvu.</li>
                                 </ul>
                             </td>
                         </tr>
@@ -1130,7 +1106,12 @@
                                 situace, oblast podnikání, místo a zařízení nemovitosti a domácnosti klienta apod.)</th>
                         </tr>
                         <tr>
-                            <td><textarea name="clientInfo"></textarea></td>
+                            <td><textarea name="clientInfo">
+                                Pojištění odpovídá klientovým finančním možnostem. Klient je s produktem seznámen. Klient měl
+dostatečný časový prostor se s pojistnou smlouvou seznámit a případně vznést dotazy. Analýzu
+konkurenčních produktů dalších pojistitelů klient NEPOŽADUJE. K sjednávanému pojištění se vztahují
+výluky dle pojistných podmínek uvedených v pojistné smlouvě. Klient byl s výlukami seznámen.
+                            </textarea></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1138,7 +1119,15 @@
                             <th colspan="4"><span class="uCase">11. Vyhodnocení situace, postupovaných rizik</span></th>
                         </tr>
                         <tr>
-                            <td><textarea name="risks"></textarea></td>
+                            <td><textarea name="risks">
+                                Klient si je vědom rizik, která mohou vzniknout neplacením pojistné a nedodržením pojistných
+podmínek vztahujících se k sjednávanému pojištění. Klientovi byly s dostatečným předstihem zaslány
+veškeré předsmluvní informace včetně pojistných podmínek, IPIDu a informací ke zpracování
+osobních údajů. Klient měl dostatečný časový prostor se s nimi seznámit a vznést případné dotazy.
+Klient si je vědom povinností vyplývajících z pojistných podmínek a smluvních ujednání a současně
+bere na vědomí rizika spojená s případnými nedodržením těchto podmínek. K sjednávanému
+pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě.
+                            </textarea></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1148,7 +1137,7 @@
                                     pojištěním</span></th>
                         </tr>
                         <tr>
-                            <td><textarea name="differences"></textarea></td>
+                            <td><textarea name="differences">Žádné nesrovnalosti nenastaly</textarea></td>
                         </tr>
                     </table>
                     <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
@@ -1183,33 +1172,26 @@
                             <td colspan="2">
                                 <div class="checkbox-container">
                                     <input type="checkbox" name="modelMatchExpectations">
-                                    <label class="checkbox-label" for="checkbox">Osoba jednající s klientem prohlaŠuje,
-                                        že sjednaná pojistná smlouva nebo modelace
-                                        zjištěnlim potřebám a požadavkům klienta.</label>
+                                    <label class="checkbox-label" for="checkbox">Osoba jednající s klientem prohlašuje, že sjednaná pojistná smlouva nebo modelace odpovídá
+zjištěným potřebám a požadavkům.</label>
                                 </div>
                             </td>
                         </tr>
                     </table>
 
-                    <p style="font-size:12px"> Klient svým podpisem potvrzuje, že jeho požadavky a potřeby související
-                        se sjednávaným
-                        pojištěním jsou
-                        zaznamenány jasně,
-                        přesně, úplně a srozumitelně a informace mu byly také poskytnuty srozumitelně a to před
-                        uzavřením pojistné
-                        smlouvy. Záznam
-                        těchto požadavků potřeb a informací odráží všechny podstatné skutečnosti.
-                        Klient bere na vědomí, že tento dokument, spolu s uzavřenou pojistnou
-                        smlouvou , slouží
-                        pojišťovnám pro
-                        vyhodnocení požadavků
-                        klienta ve smyslu § 2789 č. 89/2012 Sb.
-                        Klient svým podpisem potvrzuje, že převzal originál tohoto dokumentu,
-                        druhé
-                        vyhotovení dokumentu
-                        obdrží
-                        pojišťovací
-                        zprostředkovatel, třetí vyhotovení pojišťovna.</p>
+                    <p style="font-size:12px">Klient svým podpisem potvrzuje, že jeho výše uvedené požadavky a potřeby jsou jasně, přesně a
+srozumitelnou formou písemně zaznamenány. Klient prohlašuje, že mu bylo požadované pojištění
+vysvětleno, byly mu zodpovězeny všechny položené dotazy a že výše dohodnutého pojistného
+odpovídá jeho možnostem a schopnosti dlouhodobě dostát dobrovolně přijatému závazku. Klient
+prohlašuje, že rozsah pojištění sjednaný v pojistné smlouvě si zvolil sám a je schopen posoudit, zdali
+se tento rozsah liší od jeho potřeb a požadavků, zjištěných před uzavřením pojistné smlouvy. Pokud
+se tento obsah liší, pak je tato skutečnost výsledkem klientovy optimalizace pojistných nebezpečí a
+optimalizace výše pojistného, se kterou klient souhlasí a je s nimi srozuměn. V případě odlišného
+nastavení investiční strategie v rámci investičního životního pojištění je tato skutečnost výsledkem
+optimalizace míry investičního rizika a možného výnosu. Klient bere na vědomí, že tento dokument,
+spolu s uzavřenou pojistnou smlouvou slouží PZ pro vyhodnocení požadavků klienta ve smyslu § 2789
+zákona č. 89/2012 Sb. V případě, že má klient zvláštní požadavky na sjednání pojištění, může je sdělit
+PZ na kontaktní údaje.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
                             <td style="vertical-align: top; width: 365px">
