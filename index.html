@@ -218,6 +218,8 @@
 
             textarea {
                 resize: none;
+                min-height: 50px;
+                max-height: 100px;
             }
 
             html,
@@ -291,6 +293,10 @@
                 "contact": "email: info@slavia-pojistovna.cz www.slavia-pojistovna.cz tel: +420 255 790 111",
             }
         }
+        function auto_grow(element) {
+  element.style.height = "5px";
+  element.style.height = (element.scrollHeight) + "px";
+}
         function fillCompanyData() {
             var company = document.getElementById("company").value;
             var companyData = companies[company];
@@ -1088,7 +1094,7 @@ pojistnou smlouvu.</li>
                             <th colspan="4" class="uCase">8. Bližší specifikace požadavků a potřeb klienta</th>
                         </tr>
                         <tr>
-                            <td><textarea name="clientNeeds"></textarea></td>
+                            <td><textarea name="clientNeeds" oninput="auto_grow(this)"></textarea></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1096,7 +1102,7 @@ pojistnou smlouvu.</li>
                             <th colspan="4" class="uCase">9. Doporučení a odůvodnění</th>
                         </tr>
                         <tr>
-                            <td><textarea name="reccomendations"></textarea></td>
+                            <td><textarea name="reccomendations" oninput="auto_grow(this)"></textarea></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1106,11 +1112,8 @@ pojistnou smlouvu.</li>
                                 situace, oblast podnikání, místo a zařízení nemovitosti a domácnosti klienta apod.)</th>
                         </tr>
                         <tr>
-                            <td><textarea name="clientInfo">
-                                Pojištění odpovídá klientovým finančním možnostem. Klient je s produktem seznámen. Klient měl
-dostatečný časový prostor se s pojistnou smlouvou seznámit a případně vznést dotazy. Analýzu
-konkurenčních produktů dalších pojistitelů klient NEPOŽADUJE. K sjednávanému pojištění se vztahují
-výluky dle pojistných podmínek uvedených v pojistné smlouvě. Klient byl s výlukami seznámen.
+                            <td><textarea name="clientInfo" oninput="auto_grow(this)">
+                                Pojištění odpovídá klientovým finančním možnostem. Klient je s produktem seznámen. Klient měl dostatečný časový prostor se s pojistnou smlouvou seznámit a případně vznést dotazy. Analýzu konkurenčních produktů dalších pojistitelů klient NEPOŽADUJE. K sjednávanému pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě. Klient byl s výlukami seznámen.
                             </textarea></td>
                         </tr>
                     </table>
@@ -1119,25 +1122,17 @@ výluky dle pojistných podmínek uvedených v pojistné smlouvě. Klient byl s
                             <th colspan="4"><span class="uCase">11. Vyhodnocení situace, postupovaných rizik</span></th>
                         </tr>
                         <tr>
-                            <td><textarea name="risks">
-                                Klient si je vědom rizik, která mohou vzniknout neplacením pojistné a nedodržením pojistných
-podmínek vztahujících se k sjednávanému pojištění. Klientovi byly s dostatečným předstihem zaslány
-veškeré předsmluvní informace včetně pojistných podmínek, IPIDu a informací ke zpracování
-osobních údajů. Klient měl dostatečný časový prostor se s nimi seznámit a vznést případné dotazy.
-Klient si je vědom povinností vyplývajících z pojistných podmínek a smluvních ujednání a současně
-bere na vědomí rizika spojená s případnými nedodržením těchto podmínek. K sjednávanému
-pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě.
+                            <td><textarea name="risks" oninput="auto_grow(this)">
+                                Klient si je vědom rizik, která mohou vzniknout neplacením pojistné a nedodržením pojistných podmínek vztahujících se k sjednávanému pojištění. Klientovi byly s dostatečným předstihem zaslány veškeré předsmluvní informace včetně pojistných podmínek, IPIDu a informací ke zpracování osobních údajů. Klient měl dostatečný časový prostor se s nimi seznámit a vznést případné dotazy. Klient si je vědom povinností vyplývajících z pojistných podmínek a smluvních ujednání a současně bere na vědomí rizika spojená s případnými nedodržením těchto podmínek. K sjednávanému pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě.
                             </textarea></td>
                         </tr>
                     </table>
                     <table class="table">
                         <tr>
-                            <th colspan="4"><span class="uCase">12. Případné nesrovlanosti mezi požadavky klienta a
-                                    nabízeným
-                                    pojištěním</span></th>
+                            <th colspan="4"><span class="uCase">12. Případné nesrovlanosti mezi požadavky klienta a nabízeným pojištěním</span></th>
                         </tr>
                         <tr>
-                            <td><textarea name="differences">Žádné nesrovnalosti nenastaly</textarea></td>
+                            <td><textarea name="differences" oninput="auto_grow(this)">Žádné nesrovnalosti nenastaly</textarea></td>
                         </tr>
                     </table>
                     <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
