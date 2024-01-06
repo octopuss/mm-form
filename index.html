@@ -297,6 +297,15 @@
   element.style.height = "5px";
   element.style.height = (element.scrollHeight) + "px";
 }
+          function copyValueTo(hodnota, cilovyAtribut) {
+            var cilovyElement = document.getElementById(cilovyAtribut);
+
+            if (cilovyElement) {
+                cilovyElement.innerHTML = hodnota;
+            } else {
+                console.error("Cílový element nenalezen.");
+            }
+        }
         function fillCompanyData() {
             var company = document.getElementById("company").value;
             var companyData = companies[company];
@@ -554,23 +563,23 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td width="25%">Obchodní jméno/Jméno a příjmení:</td>
-                            <td width="45%"><input name="clientName"></td>
+                            <td width="45%"><input name="clientName" oninput="copyValueTo(this.value, 'clientName')"></td>
                             <td width="5%">IČ/RČ:</td>
-                            <td width="20%"><input name="clientId"></td>
+                            <td width="20%"><input name="clientId" oninput="copyValueTo(this.value, 'clientId')"></td>
                         </tr>
                         <tr>
                             <td width="25%">Sídlo/Trvalé bydliště:</td>
-                            <td colspan="3"><input name="address"></td>
+                            <td colspan="3"><input name="address" oninput="copyValueTo(this.value, 'address')"></td>
                         </tr>
                         <tr>
                             <td width="25%">Kontaktní adresa:</td>
-                            <td colspan="3"><input name="contactAddress"></td>
+                            <td colspan="3"><input name="contactAddress" oninput="copyValueTo(this.value, 'contactAddress')"></td>
                         </tr>
                         <tr>
                             <td width="25%">Jednající osoba:</td>
-                            <td width="45%"><input name="responsiblePerson"></td>
+                            <td width="45%"><input name="responsiblePerson" oninput="copyValueTo(this.value, 'responsiblePerson')"></td>
                             <td width="5%">TEL:</td>
-                            <td width="20%"><input name="tel"></td>
+                            <td width="20%"><input name="tel" oninput="copyValueTo(this.value, 'tel')"></td>
                         </tr>
                         <tr>
                             <td width="25%">E-mail:</td>
@@ -1239,7 +1248,7 @@ PZ na kontaktní údaje.</p>
                         </tr>
                         <tr>
                             <td width="220px">Obchodní jméno/Jméno a příjmení:</td>
-                            <td id="clientName">Generali česká pojištovna budwiser budvar</td>
+                            <td id="clientName"></td>
                             <td width="80px">IČ/RČ:</td>
                             <td id="clientId" width="90px"></td>
                         </tr>
