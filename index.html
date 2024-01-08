@@ -301,7 +301,7 @@
             var cilovyElement = document.getElementById(cilovyAtribut);
 
             if (cilovyElement) {
-                cilovyElement.innerHTML = hodnota;
+                cilovyElement.innerHTML = hodnota.toLocaleString('cs');
             } else {
                 console.error("Cílový element nenalezen.");
             }
