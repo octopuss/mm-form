@@ -238,31 +238,31 @@
         var companies = {
             "Generali": {
                 "name": "Generali Česká Pojišťovna a.s.",
-                "address": "Bělehradská 132, 120 84 Praha 2",
-                "contactAddress": "Bělehradská 132, 120 84 Praha 2",
+                "address": "Spálená 75/16, 110 00 Praha 1",
+                "contactAddress": "Spálená 75/16, 110 00 Praha 1",
                 "id": "61859869",
                 "or": "u Městského soudu v Praze, sp. zn. B 1464",
                 "contact": "email: info@generaliceska.cz www.generaliceska.cz tel: +420 241 114 114",
             },
             "Allianz": {
                 "name": "Allianz pojišťovna a.s.",
-                "address": "Římská 103/12, 120 00 Praha 2",
-                "contactAddress": "Římská 103/12, 120 00 Praha 2",
+                "address": "Ke Štvanici 656/3, 186 00 Praha 8",
+                "contactAddress": "Ke Štvanici 656/3, 186 00 Praha 8",
                 "id": "47115971",
                 "or": "u Městského soudu v Praze, sp. zn. B 1815",
                 "contact": "email: info@allianz.cz www.allianz.cz tel: +420 241 170 000",
             },
             "ČSOB": {
                 "name": "ČSOB pojišťovna a.s.",
-                "address": "Masarykovo nám. 1458, 532 18 Pardubice",
-                "contactAddress": "Masarykovo nám. 1458, 532 18 Pardubice",
+                "address": "Masarykovo náměstí 1458, Pardubice 530 02",
+                "contactAddress": "Masarykovo náměstí 1458, Pardubice 530 02",
                 "id": "45534306",
                 "or": "u Krajského soudu v Hradci Králové, sp. zn. B 567",
                 "contact": "email: info@csobpoj.cz www.csobpoj.cz tel: +420 466 100 777",
             },
             "ČPP": {
                 "name": "Česká podnikatelská pojišťovna, a.s., Vienna Insurance Group",
-                "address": "Pobřežní 665/23, 186 00 Praha 6",
+                "address": "Pobřežní 665/23, 186 00 Praha 8",
                 "contactAddress": "Pobřežní 665/23, 186 00 Praha 6",
                 "id": "63998530",
                 "or": "u Městského soudu v Praze, sp. zn. B 3433",
@@ -278,8 +278,8 @@
             },
             "UNIQA": {
                 "name": "UNIQA pojišťovna a.s.",
-                "address": "Bělohorská 19, 160 12 Praha 6",
-                "contactAddress": "Bělohorská 19, 160 12 Praha 6",
+                "address": "Evropská 136/810, 160 12 Praha 6",
+                "contactAddress": "Evropská 136/810, 160 12 Praha 6",
                 "id": "49240480",
                 "or": "u Městského soudu v Praze, sp. zn. B 2012",
                 "contact": "email: info@uniqa.cz www.uniqa.cz tel: +420 488 125 125",
@@ -500,7 +500,7 @@
                             <td colspan="2" id="insurerContactAddress"></td>
                         </tr>
                         <tr>
-                            <td>Zápis v OŘ</td>
+                            <td>Zápis v OR</td>
                             <td colspan="2" id="insurerCNB">
                             </td>
                         </tr>
@@ -1166,7 +1166,7 @@ pojistnou smlouvu.</li>
                                 <div class="checkbox-container">
                                     <input type="checkbox" name="recordForCurrentInsurance">
                                     <label class="checkbox-label" for="checkbox">Záznam se týká stávající
-                                        smlouvy</label>
+                                        smlouvy <input type="text" name="currentPolicyNumber"></label>
                                 </div>
                             </td>
                         </tr>
@@ -1197,8 +1197,8 @@ PZ na kontaktní údaje.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
                             <td style="vertical-align: top; width: 365px">
-                                V <input name="signaturePlace" style="max-width:220px"> dne <input name="signatureDate"
-                                    style="width: 90px">
+                                V <input name="signaturePlace" style="max-width:220px" oninput="copyValueTo(this.value,'signaturePlace1')"> dne <input name="signatureDate"
+                                    style="width: 90px" oninput="copyValueTo(this.value,'signatureDate1')">
                             </td>
 
                             <td style="padding-top:50px; text-align: center;">
@@ -1404,8 +1404,8 @@ PZ na kontaktní údaje.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
                             <td style="vertical-align: top; width: 500px">
-                                V <input name="signaturePlace1" style="max-width:220px"> dne <input
-                                    name="signatureDate1" style="width: 90px">
+                                V <span id="signaturePlace1" style="max-width:220px"> dne <span
+                                style="width: 90px">
                             </td>
                             <td style="padding-top:50px; text-align: center;">
                                 .................................
