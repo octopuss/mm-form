@@ -327,7 +327,7 @@
 
                 // If an element with a matching 'id' was found, set its innerHTML to the 'name' value
                 if (idElement) {
-                    idElement.innerHTML = element.value;
+                    idElement.innerHTML = element.value.replace(/\n/g, '<br>');
                 }
             });
         }
