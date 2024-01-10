@@ -180,6 +180,11 @@
             align-items: center;
         }
 
+        .textareaPrint {
+            display: none;
+        }
+
+
         @page {
             size: A4;
             margin: 11mm 17mm 17mm 17mm;
@@ -188,6 +193,15 @@
         @media print {
             body {
                 padding: 0;
+            }
+
+            textarea {
+                display: none;
+            }
+
+            .textareaPrint {
+                display: block;
+                padding: 8px;
             }
 
             .container {
@@ -294,10 +308,30 @@
             }
         }
         function auto_grow(element) {
-  element.style.height = "5px";
-  element.style.height = (element.scrollHeight) + "px";
-}
-          function copyValueTo(hodnota, cilovyAtribut) {
+            element.style.height = "5px";
+            element.style.height = (element.scrollHeight) + "px";
+            document.getElementById(element.name).innerHTML = element.value;
+
+        }
+        function copyNameValueToIdElement() {
+            // Find all elements with a 'name' attribute
+            const nameElements = document.querySelectorAll('[name]');
+
+            // Loop through each element with a 'name' attribute
+            nameElements.forEach((element) => {
+                // Get the value of the 'name' attribute
+                const nameValue = element.getAttribute('name');
+
+                // Find an element with an 'id' that matches the 'name' value
+                const idElement = document.getElementById(nameValue);
+
+                // If an element with a matching 'id' was found, set its innerHTML to the 'name' value
+                if (idElement) {
+                    idElement.innerHTML = element.value;
+                }
+            });
+        }
+        function copyValueTo(hodnota, cilovyAtribut) {
             var cilovyElement = document.getElementById(cilovyAtribut);
 
             if (cilovyElement) {
@@ -307,12 +341,13 @@
             }
         }
         function fillCompanyData() {
-            var company = document.getElementById("company").value;
+            var company = document.querySelector('[name="company"]').value;
             var companyData = companies[company];
             document.getElementById("insurerAddress").innerHTML = companyData.address;
             document.getElementById("insurerContactAddress").innerHTML = companyData.contactAddress;
             document.getElementById("insurerCNB").innerHTML = companyData.or;
             document.getElementById("insurerContact").innerHTML = companyData.contact;
+            document.getElementById("insurerCompanyId").innerHTML = companyData.id;
         }
         function fillForm(jsonData) {
 
@@ -321,29 +356,51 @@
                 if (jsonData.hasOwnProperty(key)) {
                     // Nalezneme odpovídající prvek formuláře podle jména
                     var formElement = document.querySelector('[name="' + key + '"]');
-
+                    console.log(`key: ${key}, value: ${jsonData[key]}`);
                     // Pokud prvek existuje, nastavíme hodnotu
                     if (formElement) {
                         if (formElement.type === 'checkbox') {
                             formElement.checked = jsonData[key];
+                        } else if (formElement.type === 'select-one') {
+                            // Find the option that matches the provided value
+                            for (var i = 0; i < formElement.options.length; i++) {
+                                if (formElement.options[i].value === jsonData[key]) {
+                                    // Set the matching option as selected
+                                    formElement.selectedIndex = i;
+                                    formElement.onchange();
+                                    break;
+                                }
+                            }
+                        } else if (formElement.type === 'textarea') {
+
+                            formElement.value = jsonData[key];
+                            auto_grow(formElement);
                         } else {
                             formElement.value = jsonData[key];
                         }
                     }
                 }
             }
+            copyNameValueToIdElement();
         }
         function generateJSON() {
             // Vybere všechny input, checkbox a textarea prvky formuláře
-            var formElements = document.querySelectorAll('input, checkbox, textarea');
+            var formElements = document.querySelectorAll('input, checkbox, textarea, select');
 
             // Inicializuje objekt pro ukládání dat
             var formData = {};
 
             // Pro každý prvek provede iteraci
             formElements.forEach(function (element) {
+                console.log(`name: ${element.name}, value: ${element.value}`)
                 // Přidá hodnotu do objektu s klíčem podle atributu name
-                formData[element.name] = element.type === 'checkbox' ? element.checked : element.value;
+                if (element.type === 'checkbox') {
+                    formData[element.name] = element.checked;
+                } else if (element.type === 'select-one') {
+                    formData[element.name] = element.options[element.selectedIndex].value;
+                } else {
+                    formData[element.name] = element.value;
+                }
             });
 
             // Vypíše JSON do konzole (můžete také vypsat na stránku nebo jinam)
@@ -475,7 +532,7 @@
                         </tr>
                         <tr>
                             <td width="20%">Obchodní jméno</td>
-                            <td><select id="company" onchange="fillCompanyData()">
+                            <td><select name="company" onchange="fillCompanyData()">
                                     <option disabled selected value> -- Prosím vyberte -- </option>
                                     <option value="Generali">Generali Česká Pojišťovna a.s.</option>
                                     <option value="Allianz">Allianz pojišťovna a.s.</option>
@@ -517,8 +574,11 @@
                         <tr>
                             <td>
                                 <ul>
-                                    <li>Zápis pojišťovacího zprostředkovatele a jeho spolupracujících subjektů (dále „PZ“) v registru
-pojišťovacích zprostředkovatelů lze ověřit na internetových stránkách České národní banky <a href="https://www.cnb.cz">www.cnb.cz</a> nebo přímo na adrese České národní banky.</li>
+                                    <li>Zápis pojišťovacího zprostředkovatele a jeho spolupracujících subjektů (dále
+                                        „PZ“) v registru
+                                        pojišťovacích zprostředkovatelů lze ověřit na internetových stránkách České
+                                        národní banky <a href="https://www.cnb.cz">www.cnb.cz</a> nebo přímo na adrese
+                                        České národní banky.</li>
                                     <li>Pojišťovací zprostředkovatel je činný pro:
                                         <ul>
                                             <li>Allianz pojišťovna a.s.</li>
@@ -532,27 +592,44 @@ pojišťovacích zprostředkovatelů lze ověřit na internetových stránkách 
                                     </li>
                                     <li> PZ je provizně odměňován výhradně od pojistitelů.</li>
                                     <li>PZ a osoba uzavírající pojistnou smlouvu nemá žádný přímý nebo nepřímý podíl na
-hlasovacích právech a kapitálu pojistitele, pro kterou sjednávají pojištění. Pojistitelé,
-respektive osoby, které je ovládají, nemají přímý ani nepřímý podíl na hlasovacích právech a
-kapitálu uvedeného PZ.</li>
-                                    <li>Stížnost na PZ, stejně jako stížnost týkající se sjednaného pojištění je možné podat písemně,
-telefonicky nebo emailem na kontaktní údaje pojistitele, uvedené na jeho internetových
-stránkách, na adresu PZ nebo též na adresu České národní banky, Na Příkopě 28, 115 03
-Praha 1 nebo na <a href="https://www.cnb.cz">www.cnb.cz</a> jakožto dohledový orgán. Tím není dotčeno právo obrátit se nv
-uvedených věcech na soud. V případě stížnosti na PZ či pojistitele je možné v případě
-neživotního pojištění podat návrh na řešení sporu České obchodní inspekci (<a href="https://www.coi.cz">www.coi.cz</a>),
-v případě životního pojištění návrh finančnímu arbitrovi (<a href="https://www.finarbitr.cz">www.finarbitr.cz</a>).</li>
+                                        hlasovacích právech a kapitálu pojistitele, pro kterou sjednávají pojištění.
+                                        Pojistitelé,
+                                        respektive osoby, které je ovládají, nemají přímý ani nepřímý podíl na
+                                        hlasovacích právech a
+                                        kapitálu uvedeného PZ.</li>
+                                    <li>Stížnost na PZ, stejně jako stížnost týkající se sjednaného pojištění je možné
+                                        podat písemně,
+                                        telefonicky nebo emailem na kontaktní údaje pojistitele, uvedené na jeho
+                                        internetových
+                                        stránkách, na adresu PZ nebo též na adresu České národní banky, Na Příkopě 28,
+                                        115 03
+                                        Praha 1 nebo na <a href="https://www.cnb.cz">www.cnb.cz</a> jakožto dohledový
+                                        orgán. Tím není dotčeno právo obrátit se nv
+                                        uvedených věcech na soud. V případě stížnosti na PZ či pojistitele je možné
+                                        v případě
+                                        neživotního pojištění podat návrh na řešení sporu České obchodní inspekci (<a
+                                            href="https://www.coi.cz">www.coi.cz</a>),
+                                        v případě životního pojištění návrh finančnímu arbitrovi (<a
+                                            href="https://www.finarbitr.cz">www.finarbitr.cz</a>).</li>
                                     <li>Navrhovaná pojistná smlouva se řídí právním řádem ČR.</li>
-                                    <li>Byla-li pojistná smlouva uzavřena formou obchodu na dálku, má pojistník právo odstoupit od
-pojistné smlouvy ve lhůtě 14 dnů ode dne jejího uzavření vyjma pojistných smluv životního
-pojištění. Podmínky pro odstoupení od pojistné smlouvy životního pojištění jsou uvedeny
-v informacích pro zájemce o pojištění. Pojistník nemůže odstoupit od smlouvy cestovního
-pojištění uzavřené na dobu kratší než 1 měsíc. Podmínky pro odstoupení od pojistné smlouvy
-a formulář pro odstoupení jsou k dispozici na webových stránkách pojistitele.</li>
-                                    <li>PZ provádí svou činnost způsobem, při kterém poskytuje analýzu konkurenčních produktů
-v případech, kdy mu tak ukládá zákon.</li>
-                                    <li>Záznam z jednání není závazný a nepředstavuje návrh na uzavření pojistné smlouvy ani
-pojistnou smlouvu.</li>
+                                    <li>Byla-li pojistná smlouva uzavřena formou obchodu na dálku, má pojistník právo
+                                        odstoupit od
+                                        pojistné smlouvy ve lhůtě 14 dnů ode dne jejího uzavření vyjma pojistných smluv
+                                        životního
+                                        pojištění. Podmínky pro odstoupení od pojistné smlouvy životního pojištění jsou
+                                        uvedeny
+                                        v informacích pro zájemce o pojištění. Pojistník nemůže odstoupit od smlouvy
+                                        cestovního
+                                        pojištění uzavřené na dobu kratší než 1 měsíc. Podmínky pro odstoupení od
+                                        pojistné smlouvy
+                                        a formulář pro odstoupení jsou k dispozici na webových stránkách pojistitele.
+                                    </li>
+                                    <li>PZ provádí svou činnost způsobem, při kterém poskytuje analýzu konkurenčních
+                                        produktů
+                                        v případech, kdy mu tak ukládá zákon.</li>
+                                    <li>Záznam z jednání není závazný a nepředstavuje návrh na uzavření pojistné smlouvy
+                                        ani
+                                        pojistnou smlouvu.</li>
                                 </ul>
                             </td>
                         </tr>
@@ -563,7 +640,8 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td width="25%">Obchodní jméno/Jméno a příjmení:</td>
-                            <td width="45%"><input name="clientName" oninput="copyValueTo(this.value, 'clientName')"></td>
+                            <td width="45%"><input name="clientName" oninput="copyValueTo(this.value, 'clientName')">
+                            </td>
                             <td width="5%">IČ/RČ:</td>
                             <td width="20%"><input name="clientId" oninput="copyValueTo(this.value, 'clientId')"></td>
                         </tr>
@@ -573,11 +651,13 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td width="25%">Kontaktní adresa:</td>
-                            <td colspan="3"><input name="contactAddress" oninput="copyValueTo(this.value, 'contactAddress')"></td>
+                            <td colspan="3"><input name="contactAddress"
+                                    oninput="copyValueTo(this.value, 'contactAddress')"></td>
                         </tr>
                         <tr>
                             <td width="25%">Jednající osoba:</td>
-                            <td width="45%"><input name="responsiblePerson" oninput="copyValueTo(this.value, 'responsiblePerson')"></td>
+                            <td width="45%"><input name="responsiblePerson"
+                                    oninput="copyValueTo(this.value, 'responsiblePerson')"></td>
                             <td width="5%">TEL:</td>
                             <td width="20%"><input name="tel" oninput="copyValueTo(this.value, 'tel')"></td>
                         </tr>
@@ -910,7 +990,7 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <strong>III. Pojištění odpovědnosti</strong>
+                                <strong>III. Pojistná nebezpečí</strong>
                             </td>
                             <td>
                                 Územní rozsah
@@ -1103,7 +1183,8 @@ pojistnou smlouvu.</li>
                             <th colspan="4" class="uCase">8. Bližší specifikace požadavků a potřeb klienta</th>
                         </tr>
                         <tr>
-                            <td><textarea name="clientNeeds" oninput="auto_grow(this)"></textarea></td>
+                            <td><textarea name="clientNeeds" oninput="auto_grow(this)"></textarea><span id="clientNeeds"
+                                    class="textareaPrint"></span></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1111,7 +1192,8 @@ pojistnou smlouvu.</li>
                             <th colspan="4" class="uCase">9. Doporučení a odůvodnění</th>
                         </tr>
                         <tr>
-                            <td><textarea name="reccomendations" oninput="auto_grow(this)"></textarea></td>
+                            <td><textarea name="reccomendations" oninput="auto_grow(this)"></textarea><span
+                                    id="reccomendations" class="textareaPrint"></span></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1122,7 +1204,13 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td><textarea name="clientInfo" oninput="auto_grow(this)" style="min-height: 100px">Pojištění odpovídá klientovým finančním možnostem. Klient je s produktem seznámen. Klient měl dostatečný časový prostor se s pojistnou smlouvou seznámit a případně vznést dotazy. Analýzu konkurenčních produktů dalších pojistitelů klient NEPOŽADUJE. K sjednávanému pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě. Klient byl s výlukami seznámen.
-                            </textarea></td>
+                            </textarea><span id="clientInfo" class="textareaPrint">
+                                    Pojištění odpovídá klientovým finančním možnostem. Klient je s produktem seznámen.
+                                    Klient měl dostatečný časový prostor se s pojistnou smlouvou seznámit a případně
+                                    vznést dotazy. Analýzu konkurenčních produktů dalších pojistitelů klient NEPOŽADUJE.
+                                    K sjednávanému pojištění se vztahují výluky dle pojistných podmínek uvedených
+                                    v pojistné smlouvě. Klient byl s výlukami seznámen.
+                                </span></td>
                         </tr>
                     </table>
                     <table class="table">
@@ -1131,15 +1219,27 @@ pojistnou smlouvu.</li>
                         </tr>
                         <tr>
                             <td><textarea name="risks" oninput="auto_grow(this)" style="min-height: 150px">Klient si je vědom rizik, která mohou vzniknout neplacením pojistné a nedodržením pojistných podmínek vztahujících se k sjednávanému pojištění. Klientovi byly s dostatečným předstihem zaslány veškeré předsmluvní informace včetně pojistných podmínek, IPIDu a informací ke zpracování osobních údajů. Klient měl dostatečný časový prostor se s nimi seznámit a vznést případné dotazy. Klient si je vědom povinností vyplývajících z pojistných podmínek a smluvních ujednání a současně bere na vědomí rizika spojená s případnými nedodržením těchto podmínek. K sjednávanému pojištění se vztahují výluky dle pojistných podmínek uvedených v pojistné smlouvě.
-                            </textarea></td>
+                            </textarea><span id="risks" class="textareaPrint">Klient si je vědom rizik, která mohou
+                                    vzniknout neplacením pojistné a nedodržením pojistných podmínek vztahujících se
+                                    k sjednávanému pojištění. Klientovi byly s dostatečným předstihem zaslány veškeré
+                                    předsmluvní informace včetně pojistných podmínek, IPIDu a informací ke zpracování
+                                    osobních údajů. Klient měl dostatečný časový prostor se s nimi seznámit a vznést
+                                    případné dotazy. Klient si je vědom povinností vyplývajících z pojistných podmínek a
+                                    smluvních ujednání a současně bere na vědomí rizika spojená s případnými nedodržením
+                                    těchto podmínek. K sjednávanému pojištění se vztahují výluky dle pojistných podmínek
+                                    uvedených v pojistné smlouvě.
+                                </span></td>
                         </tr>
                     </table>
                     <table class="table">
                         <tr>
-                            <th colspan="4"><span class="uCase">12. Případné nesrovlanosti mezi požadavky klienta a nabízeným pojištěním</span></th>
+                            <th colspan="4"><span class="uCase">12. Případné nesrovlanosti mezi požadavky klienta a
+                                    nabízeným pojištěním</span></th>
                         </tr>
                         <tr>
-                            <td><textarea name="differences" oninput="auto_grow(this)">Žádné nesrovnalosti nenastaly</textarea></td>
+                            <td><textarea name="differences"
+                                    oninput="auto_grow(this)">Žádné nesrovnalosti nenastaly</textarea><span
+                                    id="differences" class="textareaPrint">Žádné nesrovnalosti nenastaly</span></td>
                         </tr>
                     </table>
                     <p style="page-break-after: always;margin: 0;height:0">&nbsp;</p>
@@ -1174,31 +1274,43 @@ pojistnou smlouvu.</li>
                             <td colspan="2">
                                 <div class="checkbox-container">
                                     <input type="checkbox" name="modelMatchExpectations">
-                                    <label class="checkbox-label" for="checkbox">Osoba jednající s klientem prohlašuje, že sjednaná pojistná smlouva nebo modelace odpovídá
-zjištěným potřebám a požadavkům.</label>
+                                    <label class="checkbox-label" for="checkbox">Osoba jednající s klientem prohlašuje,
+                                        že sjednaná pojistná smlouva nebo modelace odpovídá
+                                        zjištěným potřebám a požadavkům.</label>
                                 </div>
                             </td>
                         </tr>
                     </table>
 
-                    <p style="font-size:12px">Klient svým podpisem potvrzuje, že jeho výše uvedené požadavky a potřeby jsou jasně, přesně a
-srozumitelnou formou písemně zaznamenány. Klient prohlašuje, že mu bylo požadované pojištění
-vysvětleno, byly mu zodpovězeny všechny položené dotazy a že výše dohodnutého pojistného
-odpovídá jeho možnostem a schopnosti dlouhodobě dostát dobrovolně přijatému závazku. Klient
-prohlašuje, že rozsah pojištění sjednaný v pojistné smlouvě si zvolil sám a je schopen posoudit, zdali
-se tento rozsah liší od jeho potřeb a požadavků, zjištěných před uzavřením pojistné smlouvy. Pokud
-se tento obsah liší, pak je tato skutečnost výsledkem klientovy optimalizace pojistných nebezpečí a
-optimalizace výše pojistného, se kterou klient souhlasí a je s nimi srozuměn. V případě odlišného
-nastavení investiční strategie v rámci investičního životního pojištění je tato skutečnost výsledkem
-optimalizace míry investičního rizika a možného výnosu. Klient bere na vědomí, že tento dokument,
-spolu s uzavřenou pojistnou smlouvou slouží PZ pro vyhodnocení požadavků klienta ve smyslu § 2789
-zákona č. 89/2012 Sb. V případě, že má klient zvláštní požadavky na sjednání pojištění, může je sdělit
-PZ na kontaktní údaje.</p>
+                    <p style="font-size:12px">Klient svým podpisem potvrzuje, že jeho výše uvedené požadavky a potřeby
+                        jsou jasně, přesně a
+                        srozumitelnou formou písemně zaznamenány. Klient prohlašuje, že mu bylo požadované pojištění
+                        vysvětleno, byly mu zodpovězeny všechny položené dotazy a že výše dohodnutého pojistného
+                        odpovídá jeho možnostem a schopnosti dlouhodobě dostát dobrovolně přijatému závazku. Klient
+                        prohlašuje, že rozsah pojištění sjednaný v pojistné smlouvě si zvolil sám a je schopen posoudit,
+                        zdali
+                        se tento rozsah liší od jeho potřeb a požadavků, zjištěných před uzavřením pojistné smlouvy.
+                        Pokud
+                        se tento obsah liší, pak je tato skutečnost výsledkem klientovy optimalizace pojistných
+                        nebezpečí a
+                        optimalizace výše pojistného, se kterou klient souhlasí a je s nimi srozuměn. V případě
+                        odlišného
+                        nastavení investiční strategie v rámci investičního životního pojištění je tato skutečnost
+                        výsledkem
+                        optimalizace míry investičního rizika a možného výnosu. Klient bere na vědomí, že tento
+                        dokument,
+                        spolu s uzavřenou pojistnou smlouvou slouží PZ pro vyhodnocení požadavků klienta ve smyslu §
+                        2789
+                        zákona č. 89/2012 Sb. V případě, že má klient zvláštní požadavky na sjednání pojištění, může je
+                        sdělit
+                        PZ na kontaktní údaje.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
                             <td style="vertical-align: top; width: 420px">
-                                V <input name="signaturePlace" style="max-width:240px" oninput="copyValueTo(this.value,'signaturePlace1')"> dne <input name="signatureDate"
-                                    style="width: 125px" oninput="copyValueTo(this.value,'signatureDate1')" onchange="copyValueTo(this.value, 'signatureDate1')" type="date" >
+                                V <input name="signaturePlace" style="max-width:240px"
+                                    oninput="copyValueTo(this.value,'signaturePlace')"> dne <input name="signatureDate"
+                                    style="width: 125px" oninput="copyValueTo(this.value,'signatureDate')"
+                                    onchange="copyValueTo(this.value, 'signatureDate')" type="date">
                             </td>
 
                             <td style="padding-top:50px; text-align: center;">
@@ -1404,8 +1516,8 @@ PZ na kontaktní údaje.</p>
                     <table class="nested-table" style="margin-top:100px">
                         <tr>
                             <td style="vertical-align: top; width: 500px">
-                                V <span id="signaturePlace1" style="max-width:220px"></span> dne <span
-                                style="width: 90px" id="signatureDate1"></span>
+                                V <span id="signaturePlace" style="max-width:220px"></span> dne <span
+                                    style="width: 90px" id="signatureDate"></span>
                             </td>
                             <td style="padding-top:50px; text-align: center;">
                                 .................................
