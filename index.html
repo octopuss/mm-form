@@ -310,7 +310,9 @@
         function auto_grow(element) {
             element.style.height = "5px";
             element.style.height = (element.scrollHeight) + "px";
-            document.getElementById(element.name).innerHTML = element.value;
+            if (element.nextElementSibling instanceof HTMLSpanElement) {
+                    element.nextElementSibling.innerHTML = element.value;
+                }
 
         }
         function copyNameValueToIdElement() {
@@ -657,8 +659,9 @@
                         </tr>
                         <tr>
                             <td width="25%">Jednající osoba:</td>
-                            <td width="45%"><input name="responsiblePerson"
-                                    oninput="copyValueTo(this.value, 'responsiblePerson')"></td>
+                            <td width="45%"><textarea name="responsiblePerson"
+                                    oninput="(() => {copyValueTo(this.value, 'responsiblePerson'); auto_grow(this)})()"></textarea><span
+                                    class="textareaPrint"></span></td>
                             <td width="5%">TEL:</td>
                             <td width="20%"><input name="tel" oninput="copyValueTo(this.value, 'tel')"></td>
                         </tr>
