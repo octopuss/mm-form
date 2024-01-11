@@ -334,9 +334,13 @@
         function copyValueTo(hodnota, cilovyAtribut) {
             var cilovyElement = document.getElementById(cilovyAtribut);
 
-            if (cilovyElement) {
-                cilovyElement.innerHTML = hodnota.toLocaleString('cs');
-            } else {
+           if (cilovyElement) {
+                    if (hodnota.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                        const parts = hodnota.split("-");
+                        hodnota = parts[2] + "." + parts[1] + "." + parts[0];
+                    }
+                    cilovyElement.innerHTML = hodnota;
+                } else {
                 console.error("Cílový element nenalezen.");
             }
         }
