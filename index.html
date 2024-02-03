@@ -311,7 +311,7 @@
             element.style.height = "5px";
             element.style.height = (element.scrollHeight) + "px";
             if (element.nextElementSibling instanceof HTMLSpanElement) {
-                    element.nextElementSibling.innerHTML = element.value;
+                    element.nextElementSibling.innerHTML = element.value.replace(/\n/g, '<br>');;
                 }
 
         }
